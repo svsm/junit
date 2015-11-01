@@ -7,6 +7,9 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
+import org.junit.Rule;
+import org.junit.rules.ExpectedException;
+
 /**
  * A sample test case, testing {@link java.util.ArrayList}.
  */
@@ -44,9 +47,14 @@ public class ListTest extends TestCase {
         assertTrue(!fEmpty.contains(1));
     }
 
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
+
     public void testElementAt() {
         int i = fFull.get(0);
         assertTrue(i == 1);
+//        thrown.expect(IndexOutOfBoundsException.class);
+//        fFull.get(fFull.size());
 
         try {
             fFull.get(fFull.size());

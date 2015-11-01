@@ -51,14 +51,33 @@ public class SimpleTest extends TestCase {
 
     public int unused;
 
-    public void testDivideByZero() {
-        int zero = 0;
-        int result = 8 / zero;
-        unused = result; // avoid warning for not using result
+    public void testDivideByZero()
+    {
+        try {
+            int zero = 0;
+            int result = 8 / zero;
+            unused = result; // avoid warning for not using result
+            fail("Must throw Arithmetic Exception");
+        }
+        catch (ArithmeticException ex) {
+            assertTrue(true == true);
+            assertEquals(ex.getMessage(), "/ by zero");
+            // anIndexOutOfBoundsException.getMessage(), is("Index: 0, Size: 0"));
+        }
+    }
+    public void testDivideBy1() {
+        try {
+            int a = Integer.getInteger("");
+            unused = a;// avpid warning for not using result
+            fail("Must throw NullPointerException");
+        } catch (NullPointerException ex) {
+            assertTrue(true == true);
+            assertEquals(ex.getMessage(),null);
+        }
     }
 
     public void testEquals() {
-        assertEquals(12, 12);
+        assertEquals(12, 1/2);
         assertEquals(12L, 12L);
         assertEquals(new Long(12), new Long(12));
 
